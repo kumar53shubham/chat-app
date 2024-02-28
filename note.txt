@@ -1,0 +1,28 @@
+Angular Chat App Requirement
+
+1. UI framework=> like: bootstrap,tailwind,css,scss
+
+2. Firebase configuration
+    fire console configuration
+
+To create environments files
+->ng g environments
+
+    then added configuration to environment.development.ts file
+
+Command to add firebase in project
+->ng add @angular/fire
+
+then select these below 3 thing
+ng deploy -- hosting, Authentication, Realtime Database
+
+if firebase version less than 9.9.1 then add "skipLibCheck": true, in "compilerOptions" of tsconfig.json file
+
+command to install angular bootstrap
+->ng add @ng-bootstrap/ng-bootstrap
+
+command to install ngx toastr
+->npm install ngx-toastr --save --force
+    then add it in global css folder=> @import 'ngx-toastr/toastr';
+->npm install @angular/animations --save
+

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chat-app-14980": {
+      "hosting": {
+        "chat-app": [
+          "chat-app-14980"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chat-app-14980"
+  }
+}
