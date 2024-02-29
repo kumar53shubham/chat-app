@@ -5,12 +5,13 @@ import { RegisterComponent } from './pages/register/register.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { ChatDashboardComponent } from './pages/chat-dashboard/chat-dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'login',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {
     path: 'home',
@@ -31,6 +32,7 @@ const routes: Routes = [
   {
     path: 'chat-dashboard',
     component: ChatDashboardComponent,
+    canActivate: [authGuard],
   },
 ];
 

@@ -19,6 +19,7 @@ export class AuthService {
     private toastr: ToastrService
   ) {}
 
+  // for registration of user
   register(user: User) {
     this.fireAuth
       .createUserWithEmailAndPassword(user.email, user.password)
@@ -30,7 +31,8 @@ export class AuthService {
         user.displayName = result.user?.displayName || user.name.toUpperCase();
         user.emailVerified = result.user!.emailVerified;
         user.password = '';
-        user.imageUrl=result.user?.photoURL || 'https://picsum.photos/200/300';
+        user.imageUrl =
+          result.user?.photoURL || 'https://picsum.photos/200/300';
         // save user data also after creating user
         this.saveUserData(user)
           .then((data) => {
@@ -49,6 +51,7 @@ export class AuthService {
       });
   }
 
+  // save user detail in real time database like firebase
   saveUserData(user: User) {
     const userObjectRef: AngularFireObject<User> = this.fireDb.object(
       `users/${user.uid}`
@@ -56,10 +59,12 @@ export class AuthService {
     return userObjectRef.set(user);
   }
 
+  // save user data to local storage
   setUserToLocalStorage(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
+  // return status of login and if user logged in then return user
   get loggedInStatus() {
     const userString = localStorage.getItem('user');
     if (userString == null) {
@@ -69,20 +74,34 @@ export class AuthService {
     }
   }
 
-  logoutFromLoaclStorage() {
+  // remove the user from local storage
+  logoutFromLocalStorage() {
     localStorage.removeItem('user');
   }
 
+  // logout the user from firebase database and also remove from local storage
   signoutFromFirebase() {
     this.fireAuth
       .signOut()
       .then(() => {
-        this.logoutFromLoaclStorage();
+        this.logoutFromLocalStorage();
         this.toastr.success('Logout success!!');
       })
       .catch((error) => {
         console.log(error);
         this.toastr.error('error in logging out!!');
       });
+  }
+
+  // for login the user
+  login(email: string, password: string) {
+    return this.fireAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  getUserByUserId(uid: string) {
+    const userObjectRef: AngularFireObject<User> = this.fireDb.object(
+      `users/${uid}`
+    );
+    return userObjectRef.valueChanges();
   }
 }
