@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent {
   user: User = new User();
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
   registerFormSubmitted(event: SubmitEvent) {
     event.preventDefault();
@@ -36,5 +40,8 @@ export class RegisterComponent {
 
     // form submit
     // register code goes here
+    this.authService.register(this.user);
+    this.user=new User();
   }
+
 }
