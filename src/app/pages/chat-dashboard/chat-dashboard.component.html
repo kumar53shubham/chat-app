@@ -1,3 +1,27 @@
-<div class="container">
-    <button class="btn btn-primary" (click)="logoutFromChatDashboard()">Logout</button>
+<!-- all data to show after login -->
+<div *ngIf="authService.loggedInStatus && currentUser != null" class="mt-4">
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-4">
+          <!-- first column: user list -->
+          <app-user-list />
+          <div class="text-center mt-2">
+            <h3>{{ currentUser.displayName }}</h3>
+            <div class="container">
+              <button class="btn btn-success btn-sm" (click)="logoutFromChatDashboard()">
+                Logout
+              </button>
+              <button class="btn btn-danger ms-2 btn-sm" *ngIf="!currentUser.emailVerified">
+                Verify email
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-8">
+        <!-- second column: chatting -->
+        gekjgjs
+      </div>
+    </div>
+  </div>
 </div>
+<!-- <h2>{{ currentUser | json }}</h2> -->

@@ -1,0 +1,23 @@
+<div class="containerfluid">
+  <div class="mask-custom">
+    <div class="p-3">
+      <h3>User List</h3>
+      <div *ngFor="let user of userList" class="p-2 border-bottom">
+        <div class="d-flex justify-content-around">
+          <div class="d-flex justify-content-start">
+            <img [src]="user.imageUrl" [alt]="user.name" class="profile-image"/>
+          </div>
+
+          <div class="flex-fill justify-content-start">
+           <div class="ms-3">
+            <p class="fw-bold mb-0"> {{ user.name }}</p>
+           </div>
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <button class="btn btn-warning btn-sm">start chat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

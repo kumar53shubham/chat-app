@@ -22,9 +22,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, ChatDashboardComponent, VerifyEmailComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, ChatDashboardComponent, VerifyEmailComponent, HomeComponent, UserListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
